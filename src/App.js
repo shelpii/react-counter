@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+const App = () => {
+
+  const [count, setCount] = useState(0);
+
+  const onClickPlus = () => {
+    if (count < 50) {
+      setCount(count => count + 1)
+    }
+  }
+
+  const onClickMinus = () => {
+    if (count > -50) {
+      setCount(count => count - 1)
+    }
+  }
+
+  const onClickReset = () => {
+    setCount(0)
+  }
+
+  const onClickRandom = () => {
+    setCount(+(Math.random() * (50 - -50) + -50).toFixed(0))
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h2>Counter</h2>
+        <h1>{count}</h1>
+        <button className="minus" onClick={onClickMinus} >Minus</button>
+        <button className="plus" onClick={onClickPlus} >Plus</button>
+        <button className="random" onClick={onClickRandom} >Random</button>
+        <button className="reset" onClick={onClickReset} >Reset</button>
+      </div>
     </div>
   );
 }
